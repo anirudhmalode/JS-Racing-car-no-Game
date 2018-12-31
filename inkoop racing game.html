@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Inkoop No. Game</title>
+</head>
+<body>
+    
+</div>
+    <div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+        <h2>Welcome to the Racing Game</h2>
+        <div>You are remaining with <strong><span id="remains">30</span></strong> Litres</div>
+        <div>You have crossed <strong><span id="crossed"> 0 </span></strong> kms. </div>
+        <div>Remaining <span id="bunk"> 6 </span> petrol Bunk</div>
+        <br>
+        <button class="btn-primary" id="Start" onclick="rand()" >Start</button>
+        <h3 id="randomNo">0</h3>
+        <i id="alert"></i>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var petrol = 30;
+    var distance = 0;
+    var bunk = 6;
+
+    function over(){
+        if (petrol <= 0 || distance >= 100){
+            document.getElementById("Start").disabled = true;
+            document.getElementById("alert").innerHTML = 'Oho! Your Game is Over!';
+        } else {
+            document.getElementById("Start").disabled = false;
+        }
+    }
+
+    function rand(){
+        var a = Math.ceil(Math.random() * 5);
+        var b = Math.ceil(Math.random() * 5);
+        var c = Math.ceil(Math.random() * 45);
+        
+        document.getElementById("randomNo").innerHTML = `${a}`;
+        
+        var arr = [a];
+        var arr = [b];
+        var arr = [c];
+
+        switch(a){
+            case 1:
+            petrol -= 1;
+            console.log("Deducted 1 Litre.");
+            break;
+            case 2:
+            petrol -= 2;
+            console.log("Deducted 2 Litres.");
+            break;
+            case 3:
+            petrol -= 3;
+            console.log("Deducted 3 Litres.");
+            break;
+            case 4:
+            petrol -= 4;
+            console.log("Deducted 4 Litres.");
+            break;
+            case 5:
+            petrol -= 5;
+            console.log("Deducted 5 Litres.");
+            break;
+            case 6:
+            petrol -= 6;
+            console.log("Deducted 6 Litres.");
+        }
+
+        while(b < 100 ){
+            console.log(`${a} kms added!`);
+            distance += a;
+            break;
+        }
+
+        if(c < 6 && c != 0){
+            console.log("Got 1 petrol Bunk.");
+            bunk -= 1;
+            petrol += 20;
+        }
+
+        petrol -= 0;
+        distance += 0;
+        bunk -= 0;
+        document.getElementById("remains").innerHTML = petrol;
+        document.getElementById("crossed").innerHTML = distance;
+        document.getElementById("bunk").innerHTML = bunk;
+
+        over();
+    }
+
+</script>
+    
+</body>
+</html>
